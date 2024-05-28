@@ -9,11 +9,6 @@ import plum from '../assets/featured/plum.png'
 import custard from '../assets/featured/custard.png'
 import coffe from '../assets/featured/coffe.png'
 
-import onionBg from '../assets/featured/onion-bg.png'
-import waterBg from '../assets/featured/water-bg.png'
-import vegatablesBg from '../assets/featured/vegatables-bg.png'
-
-
 export const FEATURED_CATEGORIES = [
     {
         id: 1,
@@ -86,22 +81,4 @@ export const FEATURED_CATEGORIES = [
         color: "#FEEFEA"
     },
 
-]
-
-export const FEATURED_CATEGORY = [
-    {
-        id: 1,
-        title: "Everyday Fresh & Clean with Our Products",
-        img: onionBg
-    },
-    {
-        id: 2,
-        title: "Make your Breakfast Healthy and Easy",
-        img: waterBg
-    },
-    {
-        id: 3,
-        title: "The best Organic Products Online",
-        img: vegatablesBg
-    },
 ]

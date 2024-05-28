@@ -1,70 +1,90 @@
 .featured {
+    padding-top: 60px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    padding-top: 30px;
+    gap: 30px;
     &__top {
-        &__desc {
-            padding: 20px 0px;
-           gap: 50px; 
-           p {
-            font-size: 14px;
-           }
+        gap: 30px;  
+        h1 {
+            font-size: 26px;
         }
-        &__cards {
-             display: flex;
-             flex-direction: row;
-             gap: 20px;
-             overflow: auto;
+        p {
+            font-size: 14px;
+            transition: .3s;
+
+        }
+        p:hover {
+            color: #3BB77E;
+            transition: .3s;
+        }
+    }
+
+    &__middle {
+        gap: 30px;
+        overflow: auto;
+        scrollbar-width: none;
+        &__card {
+            width: 140px;
+            height: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid transparent;
+            border-radius: 5px;
         }
     }
 
     &__bottom {
-        display: flex;
-        flex-direction: row;
+        gap: 50px;
+        flex-wrap: wrap;
         justify-content: space-between;
-        gap: 20px;
+
         &__card {
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            padding: 100px 50px 100px;
-            border: 1px solid transparent;
-            border-radius: 10px;
+            width: 400px;
+            height: 300px;
+            padding: 100px 50px;
+            padding-right: 100px;
             display: flex;
             flex-direction: column;
             gap: 20px;
             button {
                 height: 30px;
                 width: 120px;
+                background-color: #3BB77E;
                 border: 1px solid transparent;
                 border-radius: 5px;
-                background-color: #3BB77E;
                 color: #fff;
             }
         }
     }
-
 }
 
-.card {
-    width: 130px;
-    height: 180px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    &__img {
-        padding-top: 10px;
-        display: flex;
+.onion {
+    background: url("../../assets/featured/onion-bg.png") center/cover no-repeat;
+}
+
+.water {
+    background: url("../../assets/featured/water-bg.png") center/cover no-repeat;
+}
+
+.vegetables {
+    background: url("../../assets/featured/vegatables-bg.png") center/cover no-repeat;
+}
+
+@media (max-width: 1530px) {
+    .featured__bottom {
         justify-content: center;
-        align-items: center;
-    }
-    text-align: center;
-    p {
-        font-size: 14px;
-        color: #7E7E7E;
     }
 }
 
+@media (max-width: 550px) {
+    .featured__top {
+        gap: 10px;
+        p {
+            display: none;
+        }
+    }
+}

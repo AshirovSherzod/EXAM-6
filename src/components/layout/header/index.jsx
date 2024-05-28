@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { CiSearch } from "react-icons/ci";
 import { IoPersonOutline } from "react-icons/io5";
 import { FaBars } from "react-icons/fa6";
@@ -73,4 +73,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default memo(Header)

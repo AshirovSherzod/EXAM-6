@@ -27,7 +27,19 @@ button {
     align-items: center;
 }
 
+.line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
 .hero {
-    margin-top: 100px;
+    margin-top: 80px;
+}
+
+.delivery {
+    margin-top: 80px;
+    // overflow: auto;
 }
   
