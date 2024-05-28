@@ -54,7 +54,7 @@ const Header = () => {
         <div className="container row under-header__content">
             <div className="under-header__left">
                 <select name="" id="">
-                    <option value=""><BiCategory /> Browse All Ctegories</option>
+                    <option value=""> Browse All Ctegories</option>
                 </select>
                 <NavLink to={"/"}>Home</NavLink>
                 <NavLink to={"/login"}>Login</NavLink>

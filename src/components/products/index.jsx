@@ -1,14 +1,31 @@
 import React, { memo, useEffect, useState } from 'react'
 import { FaStar } from "react-icons/fa";
+import axios from '../../api';
 
 
 import './products.scss'
-import useFetch from '../../hooks/useFetch'
+
 
 
 const Products = () => {
+    
     const [offset, setOffset] = useState(1)
-    const {data, loading, error} = useFetch(`/products?limit=15`)
+    const [data, setData] = useState(null)
+    const [loading ,setLoading] = useState(false)
+    const [error ,setError] = useState(null)
+    const perPageCount = 10
+    useEffect(()=>{
+        setLoading(true)
+        axios
+            .get(`/products`, {
+                params: {
+                    limit: perPageCount * offset
+                }
+            })
+            .then(res => setData(res.data))
+            .catch(err => setError(err.response.data))
+            .finally(() =>setLoading(false))
+    }, [offset])
 
     let card = data?.products.map(el => (
         <div className="products__cards__card " key={el.id}>
@@ -54,20 +71,21 @@ const Products = () => {
                 {}
             </div>
         </div>
-        <div className="products__cards">{card} </div>
+            { 
+                loading
+                ?
+                <div className="products__loading">
+                    {LoadingCard(offset * perPageCount)}
+                </div>
+                : 
+                <>
+                <div className="products__cards">{card} </div>
+                <button className="products__cards__btn" onClick={() => setOffset((p) => p + 1)}>See more</button>
+                </>
+            }
     </section>
   )
 }
 
-{/* {
-    loading
-    ?
-    <>
-    </>
-    :
-    <div className="products__loading">
-        {LoadingCard(10)}
-    </div>
-    
-} */}
+
 export default memo(Products)
