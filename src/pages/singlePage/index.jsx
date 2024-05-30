@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { FaStar } from "react-icons/fa";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
-import { IoIosArrowDown, IoIosHeartEmpty, IoMdGitCompare   } from "react-icons/io";
+import { IoIosArrowDown, IoIosHeartEmpty, IoMdGitCompare } from "react-icons/io";
 
 
 import './singlePage.scss'
@@ -26,13 +26,14 @@ const SinglePage = () => {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState(null)
 
-  useEffect(()=> {
+  useEffect(() => {
+    window.scroll(0,0) ;
     setLoading(true)
     axios
       .get(`/products/${id}`)
       .then(res => setData(res.data))
       .catch(err => console.log(err))
-      .finally(() =>setLoading(false))
+      .finally(() => setLoading(false))
   }, [])
 
   console.log(data);
@@ -46,7 +47,7 @@ const SinglePage = () => {
             </div>
             <div className="category__item-desc">
               <h2>{data?.title}</h2>
-              <p><FaStar className='icon'/> <span>({data?.rating})</span></p>
+              <p><FaStar className='icon' /> <span>({data?.rating})</span></p>
               <h1>${data?.price}</h1>
               <p>{data?.description}</p>
               <div className="category__item-desc-btns row">
@@ -58,8 +59,8 @@ const SinglePage = () => {
                   </div>
                 </div>
                 <button className='category__item-desc-btns__cart'>Add to Cart</button>
-                <button className='category__item-desc-btns__heart'><IoIosHeartEmpty className='icons'/></button>
-                <button className='category__item-desc-btns__compare'><IoMdGitCompare className='icons'/></button>
+                <button className='category__item-desc-btns__heart'><IoIosHeartEmpty className='icons' /></button>
+                <button className='category__item-desc-btns__compare'><IoMdGitCompare className='icons' /></button>
               </div>
             </div>
           </div>
@@ -86,24 +87,24 @@ const SinglePage = () => {
         <div className="category-right__cards">
           <h4>Category</h4>
           <div className="category-right__cards-card row">
-              <img src={img1} alt="" />
-              <p>Milks & Dairies</p>
+            <img src={img1} alt="" />
+            <p>Milks & Dairies</p>
           </div>
           <div className="category-right__cards-card row">
-              <img src={img2} alt="" />
-              <p>Clothing</p>
+            <img src={img2} alt="" />
+            <p>Clothing</p>
           </div>
           <div className="category-right__cards-card row">
-              <img src={img3} alt="" />
-              <p>Pet Foods</p>              
+            <img src={img3} alt="" />
+            <p>Pet Foods</p>
           </div>
           <div className="category-right__cards-card row">
-              <img src={img4} alt="" />
-              <p>Baking material</p>           
+            <img src={img4} alt="" />
+            <p>Baking material</p>
           </div>
           <div className="category-right__cards-card row">
-              <img src={img5} alt="" />
-              <p>Fresh Fruit</p>
+            <img src={img5} alt="" />
+            <p>Fresh Fruit</p>
           </div>
         </div>
         <div className="category-right__cards category-right__fill">

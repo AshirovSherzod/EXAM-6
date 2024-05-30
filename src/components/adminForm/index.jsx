@@ -1,5 +1,5 @@
 import React from 'react'
-import './adminForm.scss'
+import './adminForm.scssgit '
 
 const AdminForm = () => {
   return (

@@ -1,61 +1,73 @@
 import React, { memo, useEffect, useState } from 'react'
 import { FaStar } from "react-icons/fa";
 import axios from '../../api';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 import './products.scss'
-import { NavLink } from 'react-router-dom';
 
 
 
 
 
 const Products = () => {
-    
+
+    const navigate = useNavigate();
+
     const [offset, setOffset] = useState(1)
     const [data, setData] = useState(null)
     const [category, setCategory] = useState(null)
-    const [loading ,setLoading] = useState(false)
+    const [catigory, setCatigory] = useState("all")
+    const [loading, setLoading] = useState(false)
     const perPageCount = 10
-
+    console.log(catigory);
     const getData = (api, setFunc) => {
         setLoading(true)
-            axios
-                .get(api, {
-                    params: {
-                        limit: perPageCount * offset
-                }})
-                .then(res => {
-                    setFunc(res)
-                })
-                .catch(err => console.log(err))
-                .finally(() =>setLoading(false))
+        let newData = catigory === "all" ? "/products" : `/products/category/${catigory}`
+        console.log(newData);
+        axios
+            .get(newData, {
+                params: {
+                    limit: perPageCount * offset
+                }
+            })
+            .then(res => {
+                setFunc(res)
+            })
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false))
     }
 
-    useEffect(()=>{
-        getData("/products", setData, setLoading)
-    }, [offset])
-    
-    useEffect(()=> {
-        getData("/products/category-list", setCategory)
+
+    useEffect(() => {
+        getData("", setData)
+    }, [offset,catigory])
+
+    useEffect(() => {
+        axios
+            .get("/products/category-list")
+            .then(res=> setCategory(res.data))
+            .catch(err => console.log(err))
     }, [])
 
-    let categoryLi = category?.data.map(el => (
-        <li key={el}>{el}</li>
+    let categoryLi = category?.map((el) => (
+        <li key={el}>
+            <data onClick={(e)=> setCatigory(e.target.value)} value={el}>{el}</data>
+        </li>
     ))
 
     let card = data?.data.products.map(el => (
         <div className="products__cards__card " key={el.id}>
             <div className="products__cards__card-img">
-                <NavLink to={`/singlepage/${el.id}`}>
+                <div onClick={() => navigate(`/singlepage/${el.id}`)}>
                     <img src={el.images[0]} alt={el.title} />
-                </NavLink>
+                </div>
             </div>
             <div className="products__cards__card-desc">
                 <p className='category-name'>{el.category}</p>
                 <h2 title={el.title} className='line-clamp'>{el.title}</h2>
                 <div className="products__cards__card-rate row">
-                    <FaStar className='icon'/>
+                    <FaStar className='icon' />
                     <p>({el.rating})</p>
                 </div>
                 <p>By <span>NestFood</span></p>
@@ -69,46 +81,46 @@ const Products = () => {
 
     const LoadingCard = (count) => {
         let arr = []
-        for(let i = 0; i < count; i++) {
+        for (let i = 0; i < count; i++) {
             arr.push(
-            <div className="products__loading__card" key={i}>
-                <div className="products__loading__card-img"></div>
-                <div className="products__loading__card-desc">
-                    <div className=""></div>
-                    <div className=""></div>
+                <div className="products__loading__card" key={i}>
+                    <div className="products__loading__card-img"></div>
+                    <div className="products__loading__card-desc">
+                        <div className=""></div>
+                        <div className="last-child"></div>
+                    </div>
                 </div>
-            </div>
             )
         }
         return arr
     }
-  return (
-    <section className='products container'>
-        <div className="products__desc">
-            <h1>Popolar Products</h1>
-            <div className="products__desc__cetegory">
-                <ul className='row'>
-                    {categoryLi}
-                </ul>
-            </div>
-        </div>
-            { 
-                loading
-                ?
-                <div className="products__loading">
-                    {LoadingCard(offset * perPageCount)}
+    return (
+        <section className='products container'>
+            <div className="products__desc">
+                <h1>Popolar Products</h1>
+                <div className="products__desc__cetegory">
+                    <ul className='row'>
+                        {categoryLi}
+                    </ul>
                 </div>
-                : 
-                <>
-                <div className="products__cards">{card} </div>
-                <button className="products__cards__btn" onClick={() => setOffset((p) => p + 1)}>See more</button>
-                </>
+            </div>
+            {
+                loading
+                    ?
+                    <div className="products__loading">
+                        {LoadingCard(offset * perPageCount)}
+                    </div>
+                    :
+                    <>
+                        <div className="products__cards">{card} </div>
+                        <button className="products__cards__btn" onClick={() => setOffset((p) => p + 1)}>See more</button>
+                    </>
             }
-    </section>
-  )
+        </section>
+    )
 }
 
 
 export default memo(Products)
 
-{/*  */}
+{/*  */ }

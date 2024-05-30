@@ -1,10 +1,9 @@
 import React, { memo, useState } from 'react'
 
-import './login.scss'
-import img from '../../assets/header-logo.svg'
 import { useNavigate } from 'react-router-dom'
 import axios from '../../api'
 import { toast } from 'react-toastify'
+import LoginForm from '../../components/loginForm'
 
 const Login = () => {
   let navigate = useNavigate()
@@ -23,47 +22,13 @@ const Login = () => {
           navigate("/admin")
         })
         .catch(err => {
+          alert("username or password is incorrect")
           // toast.error("username or password is incorrect")
         })
   }
   return (
-    <main className='container main'>
-      <form action="" onSubmit={handleLogin} className='form'>
-        <div className="form__img">
-          <img src={img} alt="" />
-        </div>
-        <div className="form__inputs">
-          <label htmlFor="">Email Addres</label>
-          <input 
-            type="text" 
-            required 
-            placeholder='Enter Your Email' 
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div className="form__inputs">
-          <label htmlFor="">Password </label>
-          <input 
-            type="text" 
-            required 
-            placeholder='Enter Your Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            />
-        </div>
-        <div className="form__checkbox">
-          <div className="form__checkbox__input">
-            <input type="checkbox" />
-            <label htmlFor="">Remember Me</label>
-          </div>
-          <a href="">Forgot Password ?</a>
-        </div>
-        <div className="form__btns">
-          <button type='submit' className='form__btns__login'>Login</button>
-          <button className='form__btns__signin'>Sign up?</button>
-        </div>
-      </form>
+    <main>
+      <LoginForm handleLogin={handleLogin} setUsername={setUsername} setPassword={setPassword} username={username} password={password}/>
     </main>
   )
 }
