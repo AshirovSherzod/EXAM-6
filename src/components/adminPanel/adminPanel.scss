@@ -1,0 +1,46 @@
+.admin-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 80px;
+
+    h2 {
+        color: #3BB77E;
+    }
+    &__desc {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        p {
+            color: #7E7E7E;
+        }
+        h1 {
+
+        }
+    }
+
+    &__descs {
+        gap: 20px;
+    }
+    
+    &__desc-top,
+    &__desc-bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        h4 span{
+            color: #3BB77E;
+        }
+    }
+    &__desc-bottom {
+        h4 {
+            color: #3BB77E;
+        }
+    }
+}
+
+@media (max-width: 580px) {
+    .admin-panel__descs {
+        flex-direction: column;
+    }
+}

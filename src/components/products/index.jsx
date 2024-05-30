@@ -4,6 +4,9 @@ import axios from '../../api';
 
 
 import './products.scss'
+import { NavLink } from 'react-router-dom';
+
+
 
 
 
@@ -11,26 +14,42 @@ const Products = () => {
     
     const [offset, setOffset] = useState(1)
     const [data, setData] = useState(null)
+    const [category, setCategory] = useState(null)
     const [loading ,setLoading] = useState(false)
-    const [error ,setError] = useState(null)
     const perPageCount = 10
-    useEffect(()=>{
-        setLoading(true)
-        axios
-            .get(`/products`, {
-                params: {
-                    limit: perPageCount * offset
-                }
-            })
-            .then(res => setData(res.data))
-            .catch(err => setError(err.response.data))
-            .finally(() =>setLoading(false))
-    }, [offset])
 
-    let card = data?.products.map(el => (
+    const getData = (api, setFunc) => {
+        setLoading(true)
+            axios
+                .get(api, {
+                    params: {
+                        limit: perPageCount * offset
+                }})
+                .then(res => {
+                    setFunc(res)
+                })
+                .catch(err => console.log(err))
+                .finally(() =>setLoading(false))
+    }
+
+    useEffect(()=>{
+        getData("/products", setData, setLoading)
+    }, [offset])
+    
+    useEffect(()=> {
+        getData("/products/category-list", setCategory)
+    }, [])
+
+    let categoryLi = category?.data.map(el => (
+        <li key={el}>{el}</li>
+    ))
+
+    let card = data?.data.products.map(el => (
         <div className="products__cards__card " key={el.id}>
             <div className="products__cards__card-img">
-                <img src={el.images[0]} alt={el.title} />
+                <NavLink to={`/singlepage/${el.id}`}>
+                    <img src={el.images[0]} alt={el.title} />
+                </NavLink>
             </div>
             <div className="products__cards__card-desc">
                 <p className='category-name'>{el.category}</p>
@@ -68,7 +87,9 @@ const Products = () => {
         <div className="products__desc">
             <h1>Popolar Products</h1>
             <div className="products__desc__cetegory">
-                {}
+                <ul className='row'>
+                    {categoryLi}
+                </ul>
             </div>
         </div>
             { 
@@ -89,3 +110,5 @@ const Products = () => {
 
 
 export default memo(Products)
+
+{/*  */}

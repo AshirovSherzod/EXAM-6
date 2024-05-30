@@ -1,12 +1,25 @@
 .products {
+    padding-top: 80px;
     &__desc {
-
+        &__cetegory {
+            ul {
+                gap: 20px;
+                padding: 20px 0px;
+                overflow: auto;
+                scrollbar-width: none;
+                li {
+                    text-wrap: nowrap;
+                    padding: 8px;
+                    background-color: #3BB77E;
+                    border: 1px solid transparent;
+                    border-radius: 5px;
+                    color: #fff;
+                }
+            }
+        }
     }
     &__loading,
     &__cards {
-        // display: grid;
-        // grid-template-columns: repeat(5, 1fr);
-        // grid-gap: 30px;
 
         display: flex;
         flex-wrap: wrap;
@@ -72,3 +85,15 @@
 .icon {
     color: gold;
 }
+
+.bg__animation {
+    background: linear-gradient(90deg, #eee, #ddd, #eee);
+    background-size: 200%;
+    animation: bgMove 1s linear 0s infinite;
+  }
+  @keyframes bgMove {
+    to {
+      background-position: 200%;
+    }
+  }
+  

@@ -1,0 +1,43 @@
+.admin-map {
+    width: 100%;
+    margin: 80px auto;
+    &__iframe {
+        width: 100%;
+        border: 1px solid transparent;
+        border-radius: 5px;
+    }
+    &__cards {
+        padding-top: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 20px;
+    }
+
+    &__cards-card {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;  
+        h3 {
+            font-size: 24px;
+        }
+        p {
+            color: #7e7e7e;
+        }
+        button {
+            width: 100px;
+            height: 40px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            background-color: #3BB77E;
+            color: #fff;
+        }
+    }
+}
+
+@media (max-width: 580px) {
+    .admin-map__cards {
+        justify-content: center;
+        flex-direction: column;
+    }
+}

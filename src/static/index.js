@@ -8,6 +8,7 @@ import strawberry from '../assets/featured/strawberry.png'
 import plum from '../assets/featured/plum.png'
 import custard from '../assets/featured/custard.png'
 import coffe from '../assets/featured/coffe.png'
+import axios from 'axios'
 
 export const FEATURED_CATEGORIES = [
     {
@@ -82,3 +83,5 @@ export const FEATURED_CATEGORIES = [
     },
 
 ]
+
+
