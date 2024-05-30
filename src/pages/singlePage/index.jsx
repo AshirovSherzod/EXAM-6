@@ -41,29 +41,45 @@ const SinglePage = () => {
     <main className='category container'>
       <div className="category__details">
         <div className="category__items">
-          <div className="category__item">
-            <div className="category__item-img">
-              <img src={data?.thumbnail} alt="" />
-            </div>
-            <div className="category__item-desc">
-              <h2>{data?.title}</h2>
-              <p><FaStar className='icon' /> <span>({data?.rating})</span></p>
-              <h1>${data?.price}</h1>
-              <p>{data?.description}</p>
-              <div className="category__item-desc-btns row">
-                <div className="category__item-desc-btns__counter row">
-                  <button className='category__item-desc-btn'>1</button>
-                  <div className="category__item-desc-btns__counter-right">
-                    <button><img src={up} alt="" /></button>
-                    <button><img src={down} alt="" /></button>
-                  </div>
-                </div>
-                <button className='category__item-desc-btns__cart'>Add to Cart</button>
-                <button className='category__item-desc-btns__heart'><IoIosHeartEmpty className='icons' /></button>
-                <button className='category__item-desc-btns__compare'><IoMdGitCompare className='icons' /></button>
+          {
+            loading
+            ?
+            <div className="category__loading">
+              <div className="category__loading-img"></div>
+              <div className="category__loading-desc">
+                <div className=""></div>
+                <div className=""></div>
+                <div className=""></div>
+                <div className=""></div>
+                <div className=""></div>
               </div>
             </div>
-          </div>
+            :
+            <div className="category__item">
+              <div className="category__item-img">
+                <img src={data?.thumbnail} alt="" />
+              </div>
+              <div className="category__item-desc">
+                <h2>{data?.title}</h2>
+                <p><FaStar className='icon' /> <span>({data?.rating})</span></p>
+                <h1>${data?.price}</h1>
+                <p>{data?.description}</p>
+                <div className="category__item-desc-btns row">
+                  <div className="category__item-desc-btns__counter row">
+                    <button className='category__item-desc-btn'>1</button>
+                    <div className="category__item-desc-btns__counter-right">
+                      <button><img src={up} alt="" /></button>
+                      <button><img src={down} alt="" /></button>
+                    </div>
+                  </div>
+                  <button className='category__item-desc-btns__cart'>Add to Cart</button>
+                  <button className='category__item-desc-btns__heart'><IoIosHeartEmpty className='icons' /></button>
+                  <button className='category__item-desc-btns__compare'><IoMdGitCompare className='icons' /></button>
+                </div>
+              </div>
+            </div>
+
+          }
           <div className="category__item__desc">
             <div className="category__item__desc__delivery">
               <h4>Packaging & Delivery</h4>

@@ -100,6 +100,9 @@ const Products = () => {
                 <h1>Popolar Products</h1>
                 <div className="products__desc__cetegory">
                     <ul className='row'>
+                    <li>
+                        <data onClick={(e)=> setCatigory(e.target.value)} value={"all"}>All</data>
+                    </li>
                         {categoryLi}
                     </ul>
                 </div>
